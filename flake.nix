@@ -12,6 +12,7 @@
     flake-utils.lib.eachDefaultSystem (system: let
       pkgs = nixpkgs.legacyPackages.${system};
     in {
+      packages.default = pkgs.callPackage ./default.nix {};
       devShells.default = with pkgs;
         mkShell {
           buildInputs = [zig];
