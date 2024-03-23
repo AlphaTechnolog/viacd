@@ -20,11 +20,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1711001935,
-        "narHash": "sha256-URtGpHue7HHZK0mrHnSf8wJ6OmMKYSsoLmJybrOLFSQ=",
+        "lastModified": 1711163522,
+        "narHash": "sha256-YN/Ciidm+A0fmJPWlHBGvVkcarYWSC+s3NTPk/P+q3c=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "20f77aa09916374aa3141cbc605c955626762c9a",
+        "rev": "44d0940ea560dee511026a53f0e2e2cde489b4d4",
         "type": "github"
       },
       "original": {
@@ -37,7 +37,8 @@
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "viacd-src": "viacd-src"
       }
     },
     "systems": {
@@ -52,6 +53,22 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "viacd-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1711221530,
+        "narHash": "sha256-NFb/y2KtzDuZA0TxOXnYaXUNKHtTSZ0BmV8JIFeSXg0=",
+        "owner": "alphatechnolog",
+        "repo": "viacd",
+        "rev": "f17b7d8ffb97aa8b51b385e732a9a1ed03eb87f9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "alphatechnolog",
+        "repo": "viacd",
         "type": "github"
       }
     }

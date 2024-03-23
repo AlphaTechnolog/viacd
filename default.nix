@@ -1,20 +1,22 @@
 {
-  pkgs ? import <nixpkgs> {},
-  lib ? pkgs.lib,
-  stdenv ? pkgs.stdenv,
+  pkgs,
+  lib,
+  src,
+  stdenvNoCC,
 }:
-stdenv.mkDerivation rec {
+stdenvNoCC.mkDerivation rec {
   pname = "viacd";
   name = pname;
   version = "dev";
 
-  src = ./.;
+  inherit src;
 
   buildInputs = with pkgs; [
     zig
   ];
 
   buildPhase = ''
+    export ZIG_GLOBAL_CACHE_DIR=$out/zig-cache
     zig build
   '';
 
