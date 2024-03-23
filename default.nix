@@ -22,7 +22,7 @@ stdenvNoCC.mkDerivation rec {
 
   installPhase = ''
     runHook preInstall
-    install -Dvm755 ./zig-out/bin/viacd $out/usr/local/bin/viacd
+    install -Dvm755 ./zig-out/bin/viacd $out/bin/viacd
     runHook postInstall
   '';
 
