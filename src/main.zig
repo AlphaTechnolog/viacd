@@ -1,6 +1,7 @@
 const std = @import("std");
 
 const Init = @import("./commands/init.zig");
+const Query = @import("./commands/query.zig");
 
 const process = std.process;
 const debug = std.debug;
@@ -12,7 +13,7 @@ const ArrayList = std.ArrayList;
 const stdout = io.getStdOut().writer();
 const stderr = io.getStdErr().writer();
 
-const known_commands = [_][]const u8{"init"};
+const known_commands = [_][]const u8{ "init", "query" };
 
 fn checkCommandExistence(command: []const u8) bool {
     for (known_commands) |cmd| {
@@ -78,7 +79,9 @@ pub fn main() !void {
         }
     };
 
-    if (mem.eql(u8, "init", collected_arguments.items[0])) {
+    const command = collected_arguments.items[0];
+
+    if (mem.eql(u8, "init", command)) {
         if (collected_arguments.items.len != 2) {
             try stderr.print("error: you have to specify the shell of initialisation\n", .{});
             process.exit(1);
@@ -105,5 +108,19 @@ pub fn main() !void {
             try stderr.print("Unable to print initialisation code for shell {s}!\n", .{shell});
             process.exit(1);
         };
+    }
+
+    if (mem.eql(u8, "query", command)) {
+        if (collected_arguments.items.len != 2) {
+            try stderr.print("error: you have to specify the potential path!\n", .{});
+            process.exit(1);
+        }
+
+        const path = collected_arguments.items[1];
+
+        var query = try Query.init(allocator, path);
+        defer query.deinit();
+
+        try query.printMatch();
     }
 }
